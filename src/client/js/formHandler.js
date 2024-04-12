@@ -1,8 +1,6 @@
 //Make fnction that check url and import it here
 
-// const form = document.getElementById("urlForm");
 const confidence = document.querySelector("#results #confidence");
-// form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
   console.log("eeeee");
@@ -10,8 +8,9 @@ function handleSubmit(event) {
 
   // Get the URL from the input field
   const formText = document.getElementById("name").value;
-  if (Client.validURL(JSON.parse(JSON.stringify(formText)))) {
-    fetch("http://localhost:8080/article", {
+  // Client.validURL(JSON.parse(JSON.stringify(formText)))
+  if (formText) {
+    fetch("http://localhost:8081/article", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -25,11 +24,6 @@ function handleSubmit(event) {
         confidence.innerHTML = res.subjectivity_confidence;
       });
   }
-  // Check if the URL is valid
-
-  // If the URL is valid, send it to the server
 }
-
-// Function to send data to the server
 
 export { handleSubmit };

@@ -3,6 +3,7 @@ dotenv.config();
 const aylien = require("aylien_textapi");
 
 function postRequest(req, res, next) {
+  console.log(`API Key: ${process.env.API_KEY}, API ID: ${process.env.API_ID}`);
   if (!req.body.text) {
     return res.status(400).json({
       message: "Invalid input",
@@ -34,7 +35,6 @@ function postRequest(req, res, next) {
       res.send(response);
     }
   );
-  return next();
 }
 
 exports.postRequest = postRequest;
