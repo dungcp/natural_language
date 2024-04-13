@@ -10,7 +10,7 @@ function handleSubmit(event) {
   const formText = document.getElementById("name").value;
   // Client.validURL(JSON.parse(JSON.stringify(formText)))
   if (formText) {
-    fetch("http://localhost:8081/article", {
+    fetch("http://localhost:3000/article", {
       method: "POST",
       mode: "cors",
       headers: {
