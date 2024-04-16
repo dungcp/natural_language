@@ -1,16 +1,16 @@
-//Make fnction that check url and import it here
-
-const confidence = document.querySelector("#results #confidence");
-
 function handleSubmit(event) {
-  console.log("eeeee");
   event.preventDefault();
+  const formText = document.getElementById("name").value.trim();
+  const error_section = document.querySelector("section.errors");
+  const error = document.querySelector("section.errors #error");
+  const confidence = document.querySelector("#results #confidence");
+  const polarity = document.querySelector("#polarity");
+  const subjectivity = document.querySelector("#subjectivity");
+  const factual = document.querySelector("#subjectivity_factual");
+  const text = document.querySelector("#text");
 
-  // Get the URL from the input field
-  const formText = document.getElementById("name").value;
-  // Client.validURL(JSON.parse(JSON.stringify(formText)))
-  if (formText) {
-    fetch("http://localhost:3000/article", {
+  if (Client.validURL(JSON.parse(JSON.stringify(formText)))) {
+    fetch("http://localhost:8081/article", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -18,11 +18,27 @@ function handleSubmit(event) {
       },
       body: JSON.stringify({ text: formText }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
       .then(function (res) {
-        console.log("res", res);
-        confidence.innerHTML = res.subjectivity_confidence;
+        error_section.style.display = "none";
+        confidence.innerHTML = res.polarity_positive;
+        polarity.innerHTML = res.polarity;
+        subjectivity.innerHTML = res.subjectivity1;
+        factual.innerHTML = res.subjectivity_factual;
+        text.innerHTML = res.text;
       });
+  } else {
+    error.innerHTML =
+      "The URL:[" +
+      JSON.stringify(formText) +
+      "] is not valide, enter a valid url";
+    error_section.style.display = "block";
+    confidence.innerHTML = "";
   }
 }
 

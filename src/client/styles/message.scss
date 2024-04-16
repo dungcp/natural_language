@@ -1,0 +1,23 @@
+.errors {
+    padding: 20px;
+    background-color: #d69898; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    display: none;
+  }
+  
+  
+  .closebtn {
+    margin-left: 20px;
+    color: rgb(12, 30, 169);
+    font-weight: bold;
+    float: right;
+    font-size: 24px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  } 

@@ -3,11 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
-    <!-- <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css"> -->
   </head>
 
   <body>
@@ -17,13 +12,22 @@
     </header>
 
     <main>
+      <section class="errors">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <div id="error"></div>
+      </section>
+
       <section>
         <form id="urlForm" onsubmit="return Client.handleSubmit(event)">
           <input
             id="name"
             type="text"
             name="url"
-            placeholder="Enter URL"
+            placeholder="https://www.example.com:8080/path"
             required
           />
           <input type="submit" name="" value="submit" />
@@ -35,9 +39,19 @@
         <div id="results">
           <ul>
             <li>
-              <h4>Confidence:</h4>
+              <h3>Polarity:</h3>
+              <p id="polarity"></p>
+              <h4>Polarity Positive:</h4>
               <p id="confidence"></p>
             </li>
+            <li>
+              <h3>Text Subjectivity:</h3>
+              <p id="subjectivity"></p>
+              <h4>subjectivity Factual:</h4>
+              <p id="subjectivity_factual"></p>
+            </li>
+            <h3>Text:</h3>
+            <p id="text"></p>
           </ul>
         </div>
       </section>
@@ -46,6 +60,5 @@
     <footer>
       <p>This is a footer</p>
     </footer>
-    <!-- <script src="/src/client/index.js" type="module"></script> -->
   </body>
 </html>
